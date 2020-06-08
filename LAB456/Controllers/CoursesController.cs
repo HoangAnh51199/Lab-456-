@@ -16,10 +16,32 @@ namespace LAB456.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
-       
+        [Authorize]
         public ActionResult Create()
         {
-            return View();
+            var viewModel = new CourseViewModel
+            {
+                Categories = _dbContext.Categories.ToList()
+            };
+            return View(viewModel);
+            
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Create(CourseViewModel viewModel)
+        {
+            var course = new Course
+            {
+                LecturerId = User.Identity.GetUserId(),
+                DateTime = viewModel.GetDateTime(),
+                CategoryId = viewModel.Category,
+                Place = viewModel.Place
+            };
+            _dbContext.CourseS.Add(course);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
