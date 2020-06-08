@@ -29,6 +29,7 @@ namespace LAB456.Controllers
 
         [Authorize]
         [HttpPost]
+        
         public ActionResult Create(CourseViewModel viewModel)
         {
             var course = new Course
