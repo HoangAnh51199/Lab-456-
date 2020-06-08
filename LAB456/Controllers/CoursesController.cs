@@ -1,4 +1,5 @@
-﻿using LAB456.Models;
+﻿using LAB456.ViewModels;
+using LAB456.Models;
 using LAB456.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
