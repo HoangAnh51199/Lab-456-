@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 
 namespace LAB456.Controllers
@@ -22,19 +23,12 @@ namespace LAB456.Controllers
 
         public ActionResult Index()
         {
-            //var upcommingCourses = _dbContext.CourseS
-            //   //.Include(c => c.Lecture)
-            //   //.Include(c => c.Category)
-            //   .Where(c => c.DateTime > DateTime.Now);
 
-            //var viewModel = new CourseViewModel
-            //{
-            //    UpcomingCourses = upcommingCourses,
-            //    ShowAction = User.Identity.IsAuthenticated
-            //};
-            return View(viewModel);
-
-
+            var upcommingCourses = _dbContext.CourseS
+               .Include(c => c.Lecturer)
+               .Include(c => c.Category)
+               .Where(c => c.DateTime > DateTime.Now);
+            return View(upcommingCourses);
         }
 
         public ActionResult About()
