@@ -21,6 +21,8 @@ namespace LAB456.ViewModels
         [Required]
         public byte Category { get; set; }
         public IEnumerable<Category> Categories { get; set; }
+        public IQueryable<Course> UpcomingCourses { get; set; }
+        public bool ShowAction { get; set; }
 
         public DateTime GetDateTime()
         {
