@@ -25,16 +25,18 @@ namespace LAB456.Controllers
         {
 
             var upcommingCourses = _dbContext.CourseS
-               .Include(c => c.Lecturer)
-               .Include(c => c.Category)
-               .Where(c => c.DateTime > DateTime.Now);
-            //var viewModel = new CourseViewModel
-            //{
-            //    UpcomingCourses = upcommingCourses,
-            //    ShowAction = User.Identity.IsAuthenticated
-            //};
-            return View(upcommingCourses);
-         
+                .Include(c => c.Lecturer)
+                .Include(c => c.Category)
+                .Where(c => c.DateTime > DateTime.Now);
+
+            var viewModel = new CoursesViewModel
+            {
+                UpcomingCourses = upcommingCourses,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+            return View(viewModel);
+
+
         }
 
         public ActionResult About()
